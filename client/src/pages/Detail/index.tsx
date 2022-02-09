@@ -1,11 +1,15 @@
 import React from 'react';
+import useDevice from '../../hooks/useDevice';
 
 const DetailPage = () => {
+  const device = useDevice();
+  const isMobile = device === 'mobile';
+
   return (
     <div className='product-detail-container'>
-      <div className='flex-col-center w-520'>
+      <div className={ isMobile ? 'flex-col-center' : 'flex-col-center w-520'}>
         <img
-          className='w-480 h-480 mb-10'
+          className={isMobile ? 'mb-10' : 'w-480 h-480 mb-10'}
           src='assets/images/product.png'
           alt='PET보틀-정사각(420ml)'
         />

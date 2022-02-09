@@ -1,10 +1,9 @@
 @import "common/index.css";
 @import "page/index.css";
-
-
+@import "responsive/index.css";
 
 body {
-  max-width: 1920px;
+  width: 100%;
 }
 
 .divide-line {

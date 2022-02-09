@@ -63,6 +63,14 @@
   gap: 15px;
 }
 
+.w-100 {
+  width: 100px;
+}
+
+.w-120 {
+  width: 120px;
+}
+
 .w-144 {
   width: 144px;
 }
@@ -76,7 +84,15 @@
 }
 
 .w-520 {
-  width: 520;
+  width: 520px;
+}
+
+.h-100 {
+  height: 100px;
+}
+
+.h-120 {
+  height: 120px;
 }
 
 .h-144 {

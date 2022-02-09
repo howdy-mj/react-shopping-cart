@@ -1,6 +1,9 @@
 import React from 'react';
+import useDevice from '../../hooks/useDevice';
 
 const CardPage = () => {
+  const device = useDevice();
+  const isTablet = device === 'tablet';
   return (
     <section className="cart-section">
       <header className="flex-col-center mt-20">
@@ -8,7 +11,7 @@ const CardPage = () => {
         <hr className="divide-line mt-20" />
       </header>
 
-      <div className="flex">
+      <div className="flex cart-section-wrap">
         <section className="cart-left-section">
           <div className="flex justify-between items-center">
             <div className="checkbox-container">
@@ -33,7 +36,7 @@ const CardPage = () => {
                 checked={true}
               />
               <img
-                className="w-144 h-144"
+                className={isTablet ? 'w-120 h-120' : 'w-144 h-144'}
                 src='assets/images/product.png'
                 alt="PET보틀-정사각(420ml)"
               />
@@ -65,7 +68,7 @@ const CardPage = () => {
                 checked={true}
               />
               <img
-                className="w-144 h-144"
+                className={isTablet ? 'w-120 h-120' : 'w-144 h-144'}
                 src='assets/images/product.png'
                 alt="PET보틀-정사각(420ml)"
               />
@@ -97,7 +100,7 @@ const CardPage = () => {
                 checked={true}
               />
               <img
-                className="w-144 h-144"
+                className={isTablet ? 'w-120 h-120' : 'w-144 h-144'}
                 src='assets/images/product.png'
                 alt="PET보틀-정사각(420ml)"
               />
@@ -127,11 +130,11 @@ const CardPage = () => {
           </div>
           <hr className="divide-line-thin" />
           <div className="cart-right-section__bottom">
-            <div className="flex justify-between p-20 mt-20">
+            <div className="flex justify-between p-20 mt-20 order-right-section__amount">
               <span className="highlight-text">결제예상금액</span>
               <span className="highlight-text">21,800원</span>
             </div>
-            <div className="flex-center mt-30 mx-10">
+            <div className="flex-center mt-30 mx-10 order-right-section__buy-button">
               <button className="primary-button flex-center">
                 주문하기(3개)
               </button>

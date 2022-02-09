@@ -1,6 +1,12 @@
 import React from 'react';
+import useDevice from '../../hooks/useDevice';
 
 const OrderListPage = () => {
+  const device = useDevice();
+  const isMobile = device === 'mobile';
+
+  console.log(device)
+
   return (
     <section className="order-section">
       <header className="flex-col-center mt-20">
@@ -16,7 +22,7 @@ const OrderListPage = () => {
         <div className="order-list-item">
           <div className="flex gap-15 mt-10">
             <img
-              className="w-144 h-144"
+              className={isMobile ? "w-100 h-100" : "w-144 h-144"}
               src='assets/images/product.png'
               alt="PET보틀-정사각(420ml)"
             />
@@ -32,7 +38,7 @@ const OrderListPage = () => {
         <div className="order-list-item">
           <div className="flex gap-15 mt-10">
             <img
-              className="w-144 h-144"
+              className={isMobile ? "w-100 h-100" : "w-144 h-144"}
               src='assets/images/product.png'
               alt="PET보틀-정사각(420ml)"
             />
@@ -48,7 +54,7 @@ const OrderListPage = () => {
         <div className="order-list-item">
           <div className="flex gap-15 mt-10">
             <img
-              className="w-144 h-144"
+              className={isMobile ? "w-100 h-100" : "w-144 h-144"}
               src='assets/images/product.png'
               alt="PET보틀-정사각(420ml)"
             />
@@ -70,7 +76,7 @@ const OrderListPage = () => {
         <div className="order-list-item">
           <div className="flex gap-15 mt-10">
             <img
-              className="w-144 h-144"
+              className={isMobile ? "w-100 h-100" : "w-144 h-144"}
               src='assets/images/product.png'
               alt="PET보틀-정사각(420ml)"
             />
@@ -86,7 +92,7 @@ const OrderListPage = () => {
         <div className="order-list-item">
           <div className="flex gap-15 mt-10">
             <img
-              className="w-144 h-144"
+              className={isMobile ? "w-100 h-100" : "w-144 h-144"}
               src='assets/images/product.png'
               alt="PET보틀-정사각(420ml)"
             />
