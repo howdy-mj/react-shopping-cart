@@ -14,7 +14,7 @@ const RoutesConfig = () => {
       element: <List />,
     },
     {
-      path: '/detail',
+      path: '/detail/:id',
       element: <Detail />,
     },
     {
@@ -23,16 +23,16 @@ const RoutesConfig = () => {
     },
     {
       path: '/order',
-      element: <Order />
+      element: <Order />,
     },
     {
       path: '/order-list',
-      element: <OrderList />
+      element: <OrderList />,
     },
     {
-      path: '/order-detail',
-      element: <OrderDetail />
-    }
+      path: '/order/:id',
+      element: <OrderDetail />,
+    },
   ];
 
   return (

@@ -1,11 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+
+import { useAppDispatch } from '../../store';
+import { fetchOrderList } from '../../store/order/orderSlice';
 import useDevice from '../../hooks/useDevice';
+import { getOrdersAll } from '../../store/order/orderSelector';
+import { formattedPrice } from '../../utils';
+import { useNavigate } from 'react-router-dom';
 
 const OrderListPage = () => {
   const device = useDevice();
   const isMobile = device === 'mobile';
+  const navigate = useNavigate();
 
-  console.log(device)
+  const dispatch = useAppDispatch();
+  const orderList = useSelector(getOrdersAll);
+
+  useEffect(() => {
+    dispatch(fetchOrderList());
+  }, []);
 
   return (
     <section className="order-section">
@@ -14,98 +27,46 @@ const OrderListPage = () => {
         <hr className="divide-line mt-20" />
       </header>
 
-      <div className="order-list">
-        <div className="order-list__header">
-          <span>주문번호: 1</span>
-          <span>상세보기 &#62;</span>
+      {orderList.length === 0 ? (
+        <div>주문 목록이 비어있습니다. </div>
+      ) : (
+        <div className="order-list">
+          {orderList.map((list) => (
+            <React.Fragment key={list.id}>
+              <div className="order-list__header">
+                <span>주문번호: {list.id}</span>
+                <span
+                  className="pointer"
+                  onClick={() => navigate(`/order/${list.id}`)}
+                >
+                  상세보기 &#62;
+                </span>
+              </div>
+              {list.orderDetails.map((detail) => (
+                <div key={detail.id} className="order-list-item">
+                  <div className="flex gap-15 mt-10">
+                    <img
+                      className={isMobile ? 'w-100 h-100' : 'w-144 h-144'}
+                      src={detail.imageUrl}
+                      alt={detail.name}
+                    />
+                    <div className="flex-col gap-15">
+                      <span className="order-name">{detail.name}</span>
+                      <span className="order-info">
+                        {formattedPrice(detail.price)}원 / 수량:{' '}
+                        {detail.quantity}개
+                      </span>
+                    </div>
+                  </div>
+                  <button className="primary-button-small flex-center self-start">
+                    장바구니
+                  </button>
+                </div>
+              ))}
+            </React.Fragment>
+          ))}
         </div>
-        <div className="order-list-item">
-          <div className="flex gap-15 mt-10">
-            <img
-              className={isMobile ? "w-100 h-100" : "w-144 h-144"}
-              src='assets/images/product.png'
-              alt="PET보틀-정사각(420ml)"
-            />
-            <div className="flex-col gap-15">
-              <span className="order-name">PET보틀-정사각(420ml)</span>
-              <span className="order-info">54,800원 / 수량: 3개</span>
-            </div>
-          </div>
-          <button className="primary-button-small flex-center self-start">
-            장바구니
-          </button>
-        </div>
-        <div className="order-list-item">
-          <div className="flex gap-15 mt-10">
-            <img
-              className={isMobile ? "w-100 h-100" : "w-144 h-144"}
-              src='assets/images/product.png'
-              alt="PET보틀-정사각(420ml)"
-            />
-            <div className="flex-col gap-15">
-              <span className="order-name">PET보틀-정사각(420ml)</span>
-              <span className="order-info">54,800원 / 수량: 3개</span>
-            </div>
-          </div>
-          <button className="primary-button-small flex-center self-start">
-            장바구니
-          </button>
-        </div>
-        <div className="order-list-item">
-          <div className="flex gap-15 mt-10">
-            <img
-              className={isMobile ? "w-100 h-100" : "w-144 h-144"}
-              src='assets/images/product.png'
-              alt="PET보틀-정사각(420ml)"
-            />
-            <div className="flex-col gap-15">
-              <span className="order-name">PET보틀-정사각(420ml)</span>
-              <span className="order-info">54,800원 / 수량: 3개</span>
-            </div>
-          </div>
-          <button className="primary-button-small flex-center self-start">
-            장바구니
-          </button>
-        </div>
-      </div>
-      <div className="order-list">
-        <div className="order-list__header">
-          <span>주문번호: 2</span>
-          <span>상세보기 &#62;</span>
-        </div>
-        <div className="order-list-item">
-          <div className="flex gap-15 mt-10">
-            <img
-              className={isMobile ? "w-100 h-100" : "w-144 h-144"}
-              src='assets/images/product.png'
-              alt="PET보틀-정사각(420ml)"
-            />
-            <div className="flex-col gap-15">
-              <span className="order-name">PET보틀-정사각(420ml)</span>
-              <span className="order-info">54,800원 / 수량: 3개</span>
-            </div>
-          </div>
-          <button className="primary-button-small flex-center self-start">
-            장바구니
-          </button>
-        </div>
-        <div className="order-list-item">
-          <div className="flex gap-15 mt-10">
-            <img
-              className={isMobile ? "w-100 h-100" : "w-144 h-144"}
-              src='assets/images/product.png'
-              alt="PET보틀-정사각(420ml)"
-            />
-            <div className="flex-col gap-15">
-              <span className="order-name">PET보틀-정사각(420ml)</span>
-              <span className="order-info">54,800원 / 수량: 3개</span>
-            </div>
-          </div>
-          <button className="primary-button-small flex-center self-start">
-            장바구니
-          </button>
-        </div>
-      </div>
+      )}
     </section>
   );
 };
