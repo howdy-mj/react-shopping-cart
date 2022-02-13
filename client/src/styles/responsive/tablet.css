@@ -39,6 +39,10 @@
     .cart-section {
         padding: 24px 30px;
     }
+    .cart-name {
+        width: 150px;
+        min-width: 100px;
+    }
 
     /* Button */
     .primary-button {

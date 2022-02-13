@@ -20,3 +20,13 @@ export const getSelectedProduct = createSelector(
   selectProductsState,
   (state) => state.selectedProduct,
 );
+
+export const getRandomRecommendProducts = createSelector(
+  getProductsAll,
+  (products) => {
+    const randomValue = Math.floor(Math.random() * products.length);
+    const randomIndex =
+      randomValue >= products.length - 2 ? randomValue - 4 : randomValue;
+    return products.slice(randomIndex, randomIndex + 3);
+  },
+);

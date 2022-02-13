@@ -27,7 +27,9 @@ const OrderListPage = () => {
       </header>
 
       {orderList.length === 0 ? (
-        <div>주문 목록이 비어있습니다. </div>
+        <div className="flex justify-center mt-40">
+          주문 목록이 비어있습니다.
+        </div>
       ) : (
         <div className="order-list">
           {orderList.map((list) => (

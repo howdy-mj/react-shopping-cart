@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import useDevice from '@/hooks/useDevice';
 import { useAppDispatch } from '@/store';
 import { fetchCartList, getCartAll } from '@/store/cart';
-import { formattedPrice } from '@/utils';
+import { formattedPrice, getCartTotalPrice } from '@/utils';
 import { deleteCartItem } from '@/apis/cart';
 
 const CardPage = () => {
@@ -16,19 +16,23 @@ const CardPage = () => {
 
   useEffect(() => {
     dispatch(fetchCartList());
-  }, [cartItems]);
+  }, []);
 
   const toggleAllItems = () => {};
 
   const toggleItemsToBuy = () => {};
 
-  const deleteItem = () => {};
+  const deleteSelectedItems = () => {};
+
+  const deleteItem = (itemId: number) => {
+    return deleteCartItem(itemId).then(() => {
+      dispatch(fetchCartList());
+    });
+  };
 
   const setAmountOfItem = () => {};
 
-  const totalAmount = cartItems.reduce((acc, curr) => {
-    return acc + curr.product.price;
-  }, 0);
+  const selectedCartItemsTotalPrice = getCartTotalPrice(cartItems);
 
   return (
     <section className="cart-section">
@@ -38,7 +42,7 @@ const CardPage = () => {
       </header>
 
       {cartItems?.length === 0 ? (
-        <div className="flex items-center mt-40">
+        <div className="flex justify-center mt-40">
           장바구니에 담긴 물건이 없습니다.
         </div>
       ) : (
@@ -57,7 +61,7 @@ const CardPage = () => {
                   선택해제
                 </label>
               </div>
-              <button className="delete-button" onClick={deleteItem}>
+              <button className="delete-button" onClick={deleteSelectedItems}>
                 상품삭제
               </button>
             </div>
@@ -87,7 +91,7 @@ const CardPage = () => {
                       className="cart-trash-svg pointer"
                       src="assets/svgs/trash.svg"
                       alt="삭제"
-                      onClick={() => deleteCartItem(item.id)}
+                      onClick={() => deleteItem(item.id)}
                     />
                     <div className="number-input-container">
                       <input
@@ -119,7 +123,7 @@ const CardPage = () => {
               <div className="flex justify-between p-20 mt-20 order-right-section__amount">
                 <span className="highlight-text">결제예상금액</span>
                 <span className="highlight-text">
-                  {formattedPrice(totalAmount)}원
+                  {formattedPrice(selectedCartItemsTotalPrice)}원
                 </span>
               </div>
               <div className="flex-center mt-30 mx-10 order-right-section__buy-button">

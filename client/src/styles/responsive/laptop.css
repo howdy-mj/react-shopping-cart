@@ -19,6 +19,8 @@
     .cart-section {
         padding: 24px 100px;
     }
-
-
+    .cart-name {
+        font-size: 18px;
+        max-width: 100px;
+    }
 }
