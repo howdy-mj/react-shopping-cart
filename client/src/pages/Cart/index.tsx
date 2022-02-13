@@ -1,10 +1,10 @@
 import React, { useCallback, useEffect, useMemo } from 'react';
-import useDevice from '../../hooks/useDevice';
-import { useAppDispatch } from '../../store';
-import { fetchCartList } from '../../store/cart/cartSlice';
 import { useSelector } from 'react-redux';
-import { getCartAll } from '../../store/cart/cartSelector';
-import { formattedPrice } from '../../utils';
+import useDevice from '@/hooks/useDevice';
+import { useAppDispatch } from '@/store';
+import { fetchCartList, getCartAll } from '@/store/cart';
+import { formattedPrice } from '@/utils';
+import { deleteCartItem } from '@/apis/cart';
 
 const CardPage = () => {
   const device = useDevice();
@@ -16,7 +16,7 @@ const CardPage = () => {
 
   useEffect(() => {
     dispatch(fetchCartList());
-  }, []);
+  }, [cartItems]);
 
   const toggleAllItems = () => {};
 
@@ -84,9 +84,10 @@ const CardPage = () => {
                   </div>
                   <div className="flex-col-center justify-end gap-15">
                     <img
-                      className="cart-trash-svg"
+                      className="cart-trash-svg pointer"
                       src="assets/svgs/trash.svg"
                       alt="삭제"
+                      onClick={() => deleteCartItem(item.id)}
                     />
                     <div className="number-input-container">
                       <input

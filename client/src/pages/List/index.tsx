@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { useAppDispatch } from '../../store';
-import { fetchProducts } from '../../store/product/productSlice';
-import { getProductsAll } from '../../store/product/productSelector';
 import { useNavigate } from 'react-router-dom';
-import { formattedPrice } from '../../utils';
+import { useAppDispatch } from '@/store';
+import { fetchProducts, getProductsAll } from '@/store/product';
+import { formattedPrice } from '@/utils';
+import { addCartItem } from '@/apis/cart';
+import { ProductI } from '@/models/product';
 
 const ListPage = () => {
   const navigate = useNavigate();
@@ -19,8 +20,8 @@ const ListPage = () => {
     navigate(`/detail/${id}`);
   };
 
-  const addToCart = () => {
-    //
+  const addToCartAndNavigate = (cartItem: ProductI) => {
+    return addCartItem(cartItem).then(() => navigate('/cart'));
   };
 
   return (
@@ -28,7 +29,7 @@ const ListPage = () => {
       {products?.map((product) => (
         <div key={product.id}>
           <img
-            className="w-280 h-280"
+            className="w-280 h-280 pointer"
             src={product.imageUrl}
             alt={product.name}
             onClick={() => goToProductDetail(product.id)}
@@ -44,7 +45,7 @@ const ListPage = () => {
               src="/assets/svgs/cart.svg"
               alt="장바구니"
               className="pointer"
-              onClick={addToCart}
+              onClick={() => addToCartAndNavigate(product)}
             />
           </div>
         </div>

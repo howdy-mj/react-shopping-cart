@@ -1,14 +1,20 @@
 import { api } from './index';
-import { CartItemI } from '../models/cart';
+import { CartItemI } from '@/models/cart';
+import { ProductI } from '@/models/product';
 
 export const getCartList = () => {
   return api.get('/carts');
 };
 
-export const addCardItem = (item: CartItemI) => {
-  return api.post('/carts', item);
+export const addCartItem = (item: ProductI) => {
+  const cartItem: Omit<ProductI, 'id'> = {
+    name: item.name,
+    price: item.price,
+    imageUrl: item.imageUrl,
+  };
+  return api.post('/carts', { product: cartItem });
 };
 
-export const deleteCardItem = (id: number) => {
+export const deleteCartItem = (id: number) => {
   return api.delete(`/carts/${id}`);
 };

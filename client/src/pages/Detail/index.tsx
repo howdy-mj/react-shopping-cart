@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react';
-import useDevice from '../../hooks/useDevice';
-import { useAppDispatch } from '../../store';
-import { fetchProductById } from '../../store/product/productSlice';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { getSelectedProduct } from '../../store/product/productSelector';
-import Loading from '../../components/Loading';
-import { formattedPrice } from '../../utils';
+import useDevice from '@/hooks/useDevice';
+import { useAppDispatch } from '@/store';
+import { fetchProductById, getSelectedProduct } from '@/store/product';
+import Loading from '@/components/Loading';
+import { formattedPrice } from '@/utils';
 
 const DetailPage = () => {
   const device = useDevice();

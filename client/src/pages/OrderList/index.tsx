@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-
-import { useAppDispatch } from '../../store';
-import { fetchOrderList } from '../../store/order/orderSlice';
-import useDevice from '../../hooks/useDevice';
-import { getOrdersAll } from '../../store/order/orderSelector';
-import { formattedPrice } from '../../utils';
 import { useNavigate } from 'react-router-dom';
+
+import { useAppDispatch } from '@/store';
+import { fetchOrderList, getOrdersAll } from '@/store/order';
+import useDevice from '@/hooks/useDevice';
+import { formattedPrice } from '@/utils';
 
 const OrderListPage = () => {
   const device = useDevice();

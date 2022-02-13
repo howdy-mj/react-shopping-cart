@@ -1,11 +1,10 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useAppDispatch } from '../../store';
-import { fetchOrderById } from '../../store/order/orderSlice';
 import { useSelector } from 'react-redux';
-import { getSelectedOrder } from '../../store/order/orderSelector';
-import Loading from '../../components/Loading';
-import { formattedPrice } from '../../utils';
+import { useAppDispatch } from '@/store';
+import { fetchOrderById, getSelectedOrder } from '@/store/order';
+import Loading from '@/components/Loading';
+import { formattedPrice } from '@/utils';
 
 const OrderDetailPage = () => {
   const params = useParams();
@@ -19,7 +18,7 @@ const OrderDetailPage = () => {
     }
   }, []);
 
-  const totalAmount = orderDetailInfo.orderDetails.reduce((acc, curr) => {
+  const totalAmount = orderDetailInfo?.orderDetails?.reduce((acc, curr) => {
     return acc + curr.price;
   }, 0);
 
@@ -40,7 +39,7 @@ const OrderDetailPage = () => {
             <div className="order-list__header">
               <span>주문번호: {orderDetailInfo.id}</span>
             </div>
-            {orderDetailInfo.orderDetails.map((item) => (
+            {orderDetailInfo.orderDetails?.map((item) => (
               <div key={item.id} className="order-list-item">
                 <div className="flex gap-15 mt-10">
                   <img

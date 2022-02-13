@@ -1,5 +1,5 @@
 import { api } from './index';
-import { OrderDetailsI } from '../models/order';
+import { OrderDetailsI } from '@/models/order';
 
 export const addOrder = (orders: OrderDetailsI[]) => {
   return api.post(`/orders`, orders);

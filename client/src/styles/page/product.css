@@ -2,9 +2,12 @@
   display: flex;
   justify-content: center;
 
+  max-width: 1200px;
+  margin: 0 auto;
+
   flex-wrap: wrap;
   gap: 20px;
-  padding: 50px 150px;
+  padding: 50px 0;
 }
 
 .product-info {

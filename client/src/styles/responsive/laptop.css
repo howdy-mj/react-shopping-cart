@@ -1,15 +1,13 @@
 @media only screen and (max-width: 1280px) {
     /* Nav */
+    .nav-content {
+        padding: 0 20px;
+    }
     .nav-title {
         font-size: 32px;
     }
     .nav-button {
         font-size: 20px;
-    }
-
-    /* List */
-    .product-container {
-        padding: 50px 100px;
     }
 
     /* Order */

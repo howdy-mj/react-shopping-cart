@@ -6,6 +6,12 @@
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
 }
 
+.nav-content {
+  height: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 .nav-title {
   font-size: 40px;
   font-weight: 900;

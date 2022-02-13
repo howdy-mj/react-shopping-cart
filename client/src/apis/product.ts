@@ -1,5 +1,5 @@
 import { api } from './index';
-import { ProductI } from '../models/product';
+import { ProductI } from '@/models/product';
 
 export const getProducts = () => {
   return api.get('/products');
