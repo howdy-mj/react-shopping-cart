@@ -8,3 +8,7 @@ export interface OrderListI {
   id: number;
   orderDetails: OrderDetailsI[];
 }
+
+export interface UpdateOrderResponseI {
+  orderDetails: OrderDetailsI[];
+}

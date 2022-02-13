@@ -3,8 +3,8 @@ import {
   createEntityAdapter,
   createSlice,
 } from '@reduxjs/toolkit';
-import { addCartItem, getCartList } from '../../apis/cart';
-import { CartItemI } from '../../models/cart';
+import { addCartItem, getCartList } from '@/apis/cart';
+import { CartItemI } from '@/models/cart';
 
 export const fetchCartList = createAsyncThunk<CartItemI[]>(
   'cart/fetchCartList',

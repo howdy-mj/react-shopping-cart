@@ -1,20 +1,24 @@
-/**
- * @jest-environment jsdom
- */
-import { fireEvent, render } from '@testing-library/react';
+import React from 'react';
+import { render } from '@testing-library/react';
 import Nav from './index';
 
-it('제목을 누르면 /로 이동한다.', async () => {
-  const { getByText } = render(<Nav />);
+jest.mock('react-router-dom', () => ({
+  ...(jest.requireActual('react-router-dom') as any),
+  useNavigate: () => {},
+}));
 
-  fireEvent.click(getByText('CLEAN CODE SHOP'));
+describe('Nav.tsx', () => {
+  it('render 성공', () => {
+    const utils = render(<Nav />);
+    expect(utils.container).toMatchSnapshot();
+  });
 
-  // const header = getByText('CLEAN CODE SHOP');
-  // expect(header).toBeInTheDocument();
-
-  // clickTitleEvent.click(nav);
-
-  // expect(nav).toHaveTextContent('CLEAN CODE SHOP');
+  it('제목, 장바구니, 주문목록 텍스트 확인', () => {
+    const utils = render(<Nav />);
+    utils.getAllByText('CLEAN CODE SHOP');
+    utils.getAllByText('장바구니');
+    utils.getAllByText('주문목록');
+  });
 });
 
 export {};

@@ -1,5 +1,4 @@
 import { api } from './index';
-import { CartItemI } from '@/models/cart';
 import { ProductI } from '@/models/product';
 
 export const getCartList = () => {
