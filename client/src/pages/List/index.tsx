@@ -2,17 +2,19 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '@/store';
-import { fetchProducts, getProductsAll } from '@/store/product';
+import { fetchProducts, getIsProductLoading, getProductsAll } from '@/store/product';
 import { formattedPrice } from '@/utils';
 import { addCartItem } from '@/apis/cart';
 import { ProductI } from '@/models/product';
 import AddCartModal from '@/components/Modal/AddCartModal';
 import { fetchCartList } from '@/store/cart';
+import Loading from '@/components/Loading';
 
 const ListPage = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const products = useSelector(getProductsAll);
+  const isLoading = useSelector(getIsProductLoading)
 
   const [showModal, setShowModal] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<ProductI>();
@@ -28,6 +30,10 @@ const ListPage = () => {
   const addToCartAndNavigate = (cartItem: ProductI) => {
     return addCartItem(cartItem).then(() => navigate('/cart'));
   };
+
+  if (isLoading) {
+    return <Loading />
+  }
 
   return (
     <section className="product-container">

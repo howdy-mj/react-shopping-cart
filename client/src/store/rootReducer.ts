@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 import { EntityState } from '@reduxjs/toolkit';
+import { CartItemI } from '@/models/cart';
 import { productSlice, ProductState } from './product/productSlice';
-import { CartItemI } from '../models/cart';
 import { cartSlice } from './cart/cartSlice';
-import { OrderDetailsI } from '../models/order';
 import { orderSlice, OrderState } from './order/orderSlice';
+
 
 export interface RootState {
   product: ProductState;
@@ -18,14 +18,3 @@ export const rootReducer = combineReducers({
   order: orderSlice.reducer,
 });
 
-// export const rootReducer: Reducer<RootState> = (state, action) => {
-//   if (action.type === HYDRATE) {
-//     const nextState = { ...state, ...action.payload };
-//     if (typeof window !== 'undefined' && state?.router) {
-//       nextState.router = state.router;
-//     }
-//     return nextState;
-//   } else {
-//     return reducer(state, action);
-//   }
-// };

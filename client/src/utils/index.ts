@@ -1,10 +1,7 @@
 import { CartItemI } from '@/models/cart';
 
 export const formattedPrice = (price: number, locale = 'ko-KR') => {
-  if (price) {
-    return price.toLocaleString(locale);
-  }
-  return 0;
+  return price.toLocaleString(locale);
 };
 
 export const getCartTotalPrice = (items: CartItemI[] = []) => {

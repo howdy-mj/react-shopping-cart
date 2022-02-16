@@ -8,9 +8,13 @@ import { CartItemI } from '@/models/cart';
 
 export const fetchCartList = createAsyncThunk<CartItemI[]>(
   'cart/fetchCartList',
-  async () => {
-    const response = await getCartList();
-    return response.data;
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await getCartList();
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
   },
 );
 
@@ -23,7 +27,12 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(fetchCartList.fulfilled, cartAdapter.setAll);
+    builder
+      .addCase(fetchCartList.fulfilled, cartAdapter.setAll)
+      .addCase(fetchCartList.rejected, (_, action) => {
+        // const err = action.error.message;
+        window.alert('데이터를 정상적으로 가져오지 못했습니다. 다시 시도 해주세요.');
+      });
   },
 });
 

@@ -15,3 +15,8 @@ export const getSelectedOrder = createSelector(
   selectOrderState,
   (state) => state.selectedOrder,
 );
+
+export const getIsOrderLoading = createSelector(
+  selectOrderState,
+  state => state.isLoading
+)
