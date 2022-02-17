@@ -42,6 +42,7 @@ const ListPage = () => {
           {products.map((product) => (
             <div key={product.id}>
               <img
+                data-testid="product-image"
                 className="w-280 h-280 pointer"
                 src={product.imageUrl}
                 alt={product.name}

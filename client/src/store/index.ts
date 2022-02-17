@@ -9,15 +9,17 @@ const persisConfig = {
   storage,
 };
 
-const persistedReducer = persistReducer(persisConfig, rootReducer)
+const persistedReducer = persistReducer(persisConfig, rootReducer);
 
 const store = configureStore({
   reducer: persistedReducer,
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+    serializableCheck: false,
+  }),
 });
 
 export type AppDispatch = typeof store.dispatch;
 export const useAppDispatch = () => useDispatch<AppDispatch>();
 
-const persistor = persistStore(store)
-export  { store, persistor };
+const persistor = persistStore(store);
+export { store, persistor };

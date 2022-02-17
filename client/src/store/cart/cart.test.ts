@@ -1,40 +1,46 @@
-import mockAxios from 'jest-mock-axios';
-import store from '../../store';
-// import { CartItemI } from '../../models/cart';
-// import { getCartList } from '../../apis/cart';
-
-afterEach(() => {
-  mockAxios.reset();
-});
-
-// const cartItems: CartItemI[] = [
-//   {
-//     id: 1,
-//     product: {
-//       name: '[리뉴얼]젓가락(종이)-정성을 담아',
-//       price: 21800,
-//       imageUrl:
-//         'https://cdn-mart.baemin.com/sellergoods/main/5297837f-5ecd-4945-be2f-4a75854cd06e.jpg',
-//     },
-//   },
-//   {
-//     product: {
-//       name: '젓가락(종이)-웬만해선 이 맛을 막을 수 없다',
-//       price: 21800,
-//       imageUrl:
-//         'https://cdn-mart.baemin.com/sellergoods/main/1b6e926b-52a3-4a92-8db5-fddaccdb2583.jpg',
-//     },
-//     id: 2,
-//   },
-// ];
+import axios from 'axios';
+import { store } from '@/store';
+import { CartItemI } from '@/models/cart';
+import { fetchCartList } from '@/store/cart/cartSlice';
 
 describe('[Store] Cart', () => {
-  it('is cart state empty', () => {
+  it('should return initialState', () => {
     const state = store.getState().cart;
     expect(state).toEqual({
       entities: {},
       ids: [],
     });
+  });
+
+  it('get cart list', async () => {
+    const cartItems: CartItemI[] = [
+      {
+        id: 1,
+        product: {
+          imageUrl: 'https://cdn-mart.baemin.com/sellergoods/main/5297837f-5ecd-4945-be2f-4a75854cd06e.jpg',
+          name: '[리뉴얼]젓가락(종이)-정성을 담아',
+          price: 21800,
+        },
+      }, {
+        id: 1644736517274,
+        product: {
+          imageUrl: 'https://cdn-mart.baemin.com/goods/2/1556008840639m0.jpg',
+          name: '냉면용기(대)',
+          price: 83700,
+        },
+      }, {
+        id: 1644749033537,
+        product: {
+          imageUrl: 'https://cdn-mart.baemin.com/sellergoods/main/6b95c66a-c13d-4ccd-9df5-b1af1428a225.jpg',
+          name: '생새우살 (71/90) 500g 4개',
+          price: 29000,
+        },
+      }];
+
+    const getSpy = jest.spyOn(axios, 'get').mockResolvedValue(cartItems);
+    axios.get = jest.fn().mockResolvedValue(cartItems);
+    const result = await store.dispatch(fetchCartList());
+    expect(result.payload).toEqual(cartItems);
   });
 
   // it('fetch getCartList', async () => {
