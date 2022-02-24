@@ -10,6 +10,7 @@ function App() {
         <RoutesConfig />
       </div>
       <div id="modal" />
+      <div id="error-modal" />
     </BrowserRouter>
   );
 }

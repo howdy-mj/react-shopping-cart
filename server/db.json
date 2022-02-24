@@ -73,26 +73,7 @@
       "imageUrl": "https://cdn-mart.baemin.com/sellergoods/main/5297837f-5ecd-4945-be2f-4a75854cd06e.jpg"
     }
   ],
-  "carts": [
-    {
-      "id": 1645628731801,
-      "product": {
-        "id": 1,
-        "name": "냉면용기(대)",
-        "price": 83700,
-        "imageUrl": "https://cdn-mart.baemin.com/goods/2/1556008840639m0.jpg"
-      }
-    },
-    {
-      "id": 1645628815680,
-      "product": {
-        "id": 7,
-        "name": "식자재왕 김말이튀김 야채맛 1kg",
-        "price": 6580,
-        "imageUrl": "https://cdn-mart.baemin.com/sellergoods/bulk/20211210-155432/9416-main-01.jpg"
-      }
-    }
-  ],
+  "carts": [],
   "orders": [
     {
       "id": 1,
@@ -226,6 +207,18 @@
           "name": "생새우살 (71/90) 500g 4개",
           "imageUrl": "https://cdn-mart.baemin.com/sellergoods/main/6b95c66a-c13d-4ccd-9df5-b1af1428a225.jpg",
           "quantity": 3
+        }
+      ]
+    },
+    {
+      "id": 1645709943752,
+      "orderDetails": [
+        {
+          "id": 1645628815680,
+          "price": 6580,
+          "name": "식자재왕 김말이튀김 야채맛 1kg",
+          "imageUrl": "https://cdn-mart.baemin.com/sellergoods/bulk/20211210-155432/9416-main-01.jpg",
+          "quantity": 2
         }
       ]
     }
