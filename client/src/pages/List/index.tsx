@@ -10,7 +10,6 @@ import {
 import { formattedPrice } from '@/utils';
 import { addCartItem } from '@/apis/cart';
 import { ProductI } from '@/models/product';
-import { fetchCartList } from '@/store/cart';
 import Loading from '@/components/Loading';
 import AlertModal from '@/components/Modal/AlertModal';
 
@@ -32,7 +31,11 @@ const ListPage = () => {
   };
 
   const addToCartAndNavigate = async (cartItem: ProductI) => {
-    await addCartItem(cartItem).then(() => navigate('/cart'));
+    try {
+      await addCartItem(cartItem);
+    } finally {
+      navigate('/cart');
+    }
   };
 
   if (isLoading) {

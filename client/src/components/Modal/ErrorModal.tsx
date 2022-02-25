@@ -1,11 +1,19 @@
+import { useSelector } from 'react-redux';
 import Portal from '../Portal';
+import { getProductHasError } from '@/store/product';
+import { getOrderHasError } from '@/store/order';
+import { getCartHasError } from '@/store/cart';
 
-interface ErrorModalI {
-  hasError: boolean;
-}
+const ErrorModal = () => {
+  const productError = useSelector(getProductHasError);
+  const orderError = useSelector(getOrderHasError);
+  const cartError = useSelector(getCartHasError);
 
-const ErrorModal = ({ hasError = false }: ErrorModalI) => {
-  const refreshPage = () => {};
+  const refreshPage = () => {
+    location.reload();
+  };
+
+  const hasError = productError || orderError || cartError;
 
   return (
     <Portal elementId="error-modal">
